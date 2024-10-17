@@ -13,10 +13,12 @@ app.use(bodyParser.json());
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
-        headless: false, // Para ver o navegador em ação
+        headless: false,
+        executablePath: '/usr/bin/chromium', // Ajuste o caminho, se necessário
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     }
 });
+
 
 client.on('qr', qr => {
     qrcode.generate(qr, { small: true });
